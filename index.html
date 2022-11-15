@@ -11,9 +11,9 @@
         <link rel="stylesheet" media="screen" href="countdown.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
-    <body style="margin:0px !important;padding:0px !important">
+    <body style="margin:0px !important;padding:0px !important;background:#000000">
         <div id="particles-js" style="position:absolute;z-index:10;opacity:0.25"></div>
-        <div class="row" style="padding-top:250px">
+        <div class="row" style="padding-top:150px">
             <div class="col-md-1"></div>
             <div class="col-md-3" style="cursor:pointer">
                 <!-- <div class="blob purple"></div> -->
@@ -40,6 +40,9 @@
             <canvas id="canvas-number"></canvas>
             <canvas id="canvas-dots"></canvas>
         </div>
+		<div id="div-video" style="position:absolute;z-index:50;width:100%;top:0;left:0;height:100%">
+			<video controls preload="none" style="width:100%;height:100%" id="myVideo"></video>
+		</div>
     </body>
 </html>
 <style>
@@ -96,6 +99,7 @@
   count_particles = document.querySelector('.js-count-particles');
   $(document).ready(function(){
     $('.body-demo').hide();
+    $('#div-video').hide();
 
     $('.main').on('click', function(){
         $('.body-demo').show();
@@ -109,6 +113,13 @@
       })
 
   });
+  function videoPlay()
+    {
+		$('#div-video').fadeIn('slow');
+		document.getElementById("myVideo").setAttribute("src",'video.mp4');
+		document.getElementById("myVideo").load();
+		document.getElementById("myVideo").play();
+    }
 /*
 Desc: Define inital variables
 */
@@ -212,7 +223,8 @@ function countdown() {
 	if (countdownFrom === 0) {
 		countdownRunning = false;
 		// Now that countdowns finised show the text Go
-		drawNumber('GO');
+		//drawNumber('GO');
+		videoPlay();
 	}
 	
 	// Decrement number down
@@ -249,10 +261,10 @@ function drawNumber(num) {
 		 //	Clear stage of previous numbers
 		 numberStageCtx.clearRect(0,0,numberStageWidth, numberStageHeight);
 	
-		 numberStageCtx.fillStyle = "#24282f";
-	   numberStageCtx.textAlign = 'center';
-  	 numberStageCtx.font = "bold 418px Lato";
-  	 numberStageCtx.fillText(num, 340, 400);
+		numberStageCtx.fillStyle = "#24282f";
+	   	numberStageCtx.textAlign = 'center';
+  	 	numberStageCtx.font = "bold 418px Lato";
+  	   	numberStageCtx.fillText(num, 340, 400);
 	
 		 var ctx = document.getElementById('canvas-number').getContext('2d');
 			

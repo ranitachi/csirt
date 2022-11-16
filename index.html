@@ -103,7 +103,8 @@
 
     $('.main').on('click', function(){
         $('.body-demo').show();
-        countdown();
+        //countdown();
+		videoPlay();
     });
 
     document.addEventListener("keydown", function(event) {
@@ -198,7 +199,7 @@ function Dot(x, y, color, alpha) {
 /*
 Desc: Create a certain amount of dots
 */
-for (var i = 0; i < 2240; i++) {
+for (var i = 0; i < 5000; i++) {
 	
 	// Create a dot
 	var dot = new Dot(randomNumber(0, stageWidth), randomNumber(0, stageHeight), colors[randomNumber(1, colors.length)], .3);
